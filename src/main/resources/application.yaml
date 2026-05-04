@@ -3,3 +3,18 @@ server.port: 9090
 spring:
   application:
     name: M295_pokefolio_backend
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/m295_pokefolio_backend
+    username: postgres
+    password: 123
+    driverClassName: org.postgresql.Driver
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/M295_pokefolio_backend
