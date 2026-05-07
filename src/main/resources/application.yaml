@@ -1,8 +1,8 @@
 server.port: 9090
 
 spring:
-  application:
-    name: M295_pokefolio_backend
+#  application:
+ #   name: M295_pokefolio_backend
   jpa:
     show-sql: true
     generate-ddl: true
@@ -18,3 +18,5 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8080/realms/M295_pokefolio_backend
+app:
+  name: M295_pokefolio_backend
