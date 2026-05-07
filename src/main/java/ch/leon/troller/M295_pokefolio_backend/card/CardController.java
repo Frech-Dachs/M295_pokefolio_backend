@@ -22,7 +22,7 @@ public class CardController {
         this.cardService = cardService;
     }
 
-    @Tag(name = "Card", description = "Get all Cards")
+    @Tag(name = "Card", description = "Get all Collections")
     @GetMapping("api/card")
     @RolesAllowed(Roles.Read)
     public ResponseEntity<List<Card>> all() {
