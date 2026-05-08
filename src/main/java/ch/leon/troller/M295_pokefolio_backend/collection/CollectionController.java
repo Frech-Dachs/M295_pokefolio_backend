@@ -54,28 +54,33 @@ public class CollectionController {
     @PostMapping
     @RolesAllowed(Roles.Read)
     @Tag(name = "Collection", description = "Create Collection")
-    public ResponseEntity<Collection> create(@AuthenticationPrincipal Jwt jwt, @RequestBody Collection collection) {
+    public ResponseEntity<Collection> create(@AuthenticationPrincipal Jwt jwt,
+                                             @RequestBody Collection collection) {
         return new ResponseEntity<>(collectionService.createCollection(username(jwt), collection), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     @RolesAllowed(Roles.Read)
     @Tag(name = "Collection", description = "Update Collection")
-    public ResponseEntity<Collection> updateCollection(@Valid @RequestBody Collection collection, @PathVariable Long id, @AuthenticationPrincipal Jwt jwt) {
+    public ResponseEntity<Collection> updateCollection(@Valid @RequestBody Collection collection,
+                                                       @PathVariable Long id,
+                                                       @AuthenticationPrincipal Jwt jwt) {
         return new ResponseEntity<>(collectionService.updateCollection(collection, id, username(jwt)), HttpStatus.OK);
     }
 
     @PutMapping("/admin/{id}")
     @RolesAllowed(Roles.Admin)
     @Tag(name = "Collection", description = "Update any Collection (Admin)")
-    public ResponseEntity<Collection> updateCollectionAdmin(@Valid @RequestBody Collection collection, @PathVariable Long id) {
+    public ResponseEntity<Collection> updateCollectionAdmin(@Valid @RequestBody Collection collection,
+                                                            @PathVariable Long id) {
         return new ResponseEntity<>(collectionService.updateCollectionAdmin(collection, id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     @RolesAllowed(Roles.Read)
     @Tag(name = "Collection", description = "Delete Collection")
-    public ResponseEntity<MessageResponse> deleteCollection(@AuthenticationPrincipal Jwt jwt, @PathVariable Long id) {
+    public ResponseEntity<MessageResponse> deleteCollection(@AuthenticationPrincipal Jwt jwt,
+                                                            @PathVariable Long id) {
         return ResponseEntity.ok(collectionService.deleteCollection(id, username(jwt)));
     }
 
@@ -84,33 +89,5 @@ public class CollectionController {
     @Tag(name = "Collection", description = "Delete any Collection (Admin)")
     public ResponseEntity<MessageResponse> deleteCollectionAdmin(@PathVariable Long id) {
         return ResponseEntity.ok(collectionService.deleteCollectionAdmin(id));
-    }
-
-    @PutMapping("/addCard/{id}")
-    @RolesAllowed(Roles.Read)
-    @Tag(name = "Collection", description = "Add Card to Collection")
-    public ResponseEntity<Collection> addCard(@RequestBody Long cardId, @PathVariable Long id, @AuthenticationPrincipal Jwt jwt) {
-        return new ResponseEntity<>(collectionService.addCard(cardId, id, username(jwt)), HttpStatus.OK);
-    }
-
-    @PutMapping("/admin/addCard/{id}")
-    @RolesAllowed(Roles.Admin)
-    @Tag(name = "Collection", description = "Add Card to any Collection (Admin)")
-    public ResponseEntity<Collection> addCardAdmin(@RequestBody Long cardId, @PathVariable Long id) {
-        return new ResponseEntity<>(collectionService.addCardAdmin(cardId, id), HttpStatus.OK);
-    }
-
-    @PutMapping("/removeCard/{id}")
-    @RolesAllowed(Roles.Read)
-    @Tag(name = "Collection", description = "Remove Card from Collection")
-    public ResponseEntity<Collection> removeCard(@RequestBody Long cardId, @PathVariable Long id, @AuthenticationPrincipal Jwt jwt) {
-        return new ResponseEntity<>(collectionService.removeCard(cardId, id, username(jwt)), HttpStatus.OK);
-    }
-
-    @PutMapping("/admin/removeCard/{id}")
-    @RolesAllowed(Roles.Admin)
-    @Tag(name = "Collection", description = "Remove Card from any Collection (Admin)")
-    public ResponseEntity<Collection> removeCardAdmin(@RequestBody Long cardId, @PathVariable Long id) {
-        return new ResponseEntity<>(collectionService.removeCardAdmin(cardId, id), HttpStatus.OK);
     }
 }
