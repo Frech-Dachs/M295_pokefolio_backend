@@ -1,5 +1,8 @@
 package ch.leon.troller.M295_pokefolio_backend.user;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class UserService {
 
     public final UserRepository userRepository;

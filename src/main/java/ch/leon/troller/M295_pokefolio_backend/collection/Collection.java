@@ -2,6 +2,7 @@ package ch.leon.troller.M295_pokefolio_backend.collection;
 
 import ch.leon.troller.M295_pokefolio_backend.card.Card;
 import ch.leon.troller.M295_pokefolio_backend.card.CardType;
+import ch.leon.troller.M295_pokefolio_backend.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -25,4 +26,8 @@ public class Collection {
     @OneToMany
     @JoinColumn(name = "collection_id")
     private List<Card> cards;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }
