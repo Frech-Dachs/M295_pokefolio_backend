@@ -64,7 +64,7 @@ class CardControllerTest {
         savedCard.setId(2L);
         when(cardService.insertCard(any(Card.class))).thenReturn(savedCard);
 
-        var response = cardController.newDepartment(requestCard);
+        var response = cardController.create(requestCard);
 
         assertThat(response.getStatusCode().value()).isEqualTo(200);
         var body = response.getBody();
@@ -81,7 +81,7 @@ class CardControllerTest {
         updatedCard.setHp(90);
         when(cardService.updateCard(any(Card.class), eq(3L))).thenReturn(updatedCard);
 
-        var response = cardController.updateCard(requestCard, 3L);
+        var response = cardController.update(requestCard, 3L);
 
         assertThat(response.getStatusCode().value()).isEqualTo(200);
         var body = response.getBody();
@@ -94,7 +94,7 @@ class CardControllerTest {
     void deleteCard_shouldDeleteCardById() {
         when(cardService.deleteCard(4L)).thenReturn(new MessageResponse("Card 4 deleted"));
 
-        var response = cardController.deleteCard(4L);
+        var response = cardController.delete(4L);
 
         assertThat(response.getStatusCode().value()).isEqualTo(200);
         var body = response.getBody();
